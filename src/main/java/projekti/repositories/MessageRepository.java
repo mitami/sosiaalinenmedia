@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package repositories;
+package projekti.repositories;
 
-import models.Comment;
+import projekti.models.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author mikko
  */
-public interface CommentRepository extends JpaRepository<Comment, Long> {
+@Repository
+public interface MessageRepository extends JpaRepository<Message, Long> {
   
 }

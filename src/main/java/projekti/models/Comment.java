@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package projekti.models;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,15 +23,19 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Picture extends AbstractPersistable<Long> {
+public class Comment extends AbstractPersistable<Long> {
+
+  @ManyToMany(mappedBy = "comments")
+  private List<Picture> pictures;
   
-  private byte[] content;
-  private boolean isprofile;
-  private String description;
+  private String text;
+  private LocalDate sent;
   
-  @OneToMany
-  private List<Comment> comments;
-  @OneToMany
-  private List<Like> likes;
   
+  @ManyToOne
+  private Account sender;
+  @ManyToOne
+  private Message message;
+  @ManyToOne
+  private Picture picture;
 }

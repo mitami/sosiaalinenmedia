@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package services;
+package projekti.services;
 
 import java.util.ArrayList;
-import models.Account;
+import projekti.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import repositories.AccountRepository;
+import projekti.repositories.AccountRepository;
 
 /**
  *

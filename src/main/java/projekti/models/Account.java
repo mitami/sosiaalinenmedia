@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package projekti.models;
 
-import java.time.LocalDate;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,12 +21,16 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Follow extends AbstractPersistable<Long> {
+public class Account extends AbstractPersistable<Long> {
   
-  private LocalDate date;
-  private boolean confirmed;
-  @OneToOne
-  private Account follower;
-  @OneToOne
-  private Account target;
+  private String name;
+  private String username;
+  private String password;
+  
+  @OneToMany
+  private List<Comment> comments;
+  @OneToMany
+  private List<Message> messages;
+  @OneToMany
+  private List<Picture> pictures;
 }

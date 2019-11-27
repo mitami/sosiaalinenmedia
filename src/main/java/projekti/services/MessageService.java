@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package services;
+package projekti.services;
 
 import org.springframework.stereotype.Service;
 
@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
  * @author mikko
  */
 @Service
-public class CommentService {
+public class MessageService {
   
 }

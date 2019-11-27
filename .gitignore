@@ -2,3 +2,5 @@ build/
 *.class
 *.jar
 .tmcproject.yml
+/target/
+*.db
