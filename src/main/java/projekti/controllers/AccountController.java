@@ -44,4 +44,9 @@ public class AccountController {
     
     return "redirect:/login";
   }
+  
+  @GetMapping("/accounts/new")
+  public String register() {
+    return "registration";
+  }
 }
