@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Registration</title>
+    <meta charset="UTF-8"></meta>
+  </head>
+  <body>
+    <h2>Register a new user</h2>
+    <div>
+      <form method="POST" th:action="@{/accounts}">
+        <p>name</p>
+        <input type="text" name="name" />
+        <p>Username</p>
+        <input type="text" name="username" />
+        <p>Password</p>
+        <input type="password" name="password" />
+        <input type="submit" value="Register" />
+      </form>
+    </div>
+  </body>
+</html>
