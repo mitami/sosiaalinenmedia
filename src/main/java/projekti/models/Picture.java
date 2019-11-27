@@ -28,7 +28,7 @@ public class Picture extends AbstractPersistable<Long> {
   private boolean isprofile;
   private String description;
   
-  @ManyToMany
+  @OneToMany
   private List<Comment> comments;
   @OneToMany(mappedBy="targetPicture")
   private List<Fancy> likes;
