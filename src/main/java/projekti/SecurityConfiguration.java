@@ -38,7 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/reservations").hasAuthority("USER")
                 .anyRequest().authenticated();
         http.formLogin()
-                .permitAll();
+                .permitAll()
+                .defaultSuccessUrl("/accounts/myprofile", true);
   }
   
   @Autowired

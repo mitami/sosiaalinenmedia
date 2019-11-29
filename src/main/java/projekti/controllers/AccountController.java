@@ -5,6 +5,7 @@
  */
 package projekti.controllers;
 
+import java.security.Principal;
 import projekti.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,15 @@ public class AccountController {
   @GetMapping("/accounts/{username}/profile")
   public String getUserProfileByUsername(Model model, @PathVariable String username) {
     Account a = as.getUserByUsername(username);
+    
+    model.addAttribute("user", a);
+    
+    return "profile";
+  }
+  
+  @GetMapping("/accounts/myprofile")
+  public String getLoggedInUsersProfile(Model model, Principal principal) {
+    Account a = as.getUserByUsername(principal.getName());
     
     model.addAttribute("user", a);
     
