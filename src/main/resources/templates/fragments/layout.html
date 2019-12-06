@@ -11,9 +11,21 @@ and open the template in the editor.
   </head>
   <body>
     <header th:fragment="headerbar">
-      <input type="text" name="username" />
-      <button>Hae!</button>
+      <a th:href="@{/accounts/myprofile}">Oma profiili</a>
+      <form th:action="@{/accounts/search}" method="GET">
+        <input type="text" name="username" />
+        <input type="submit" value="Hae!" />
+      </form>
       <button>Logout</button>
     </header>
+    
+    <div th:fragment="usersearchresult(user)">
+      <div th:if="${user != null}">
+        <h4 th:text="${user.name}">Ketään ei löytynyt :/</h4>
+      </div>
+      <div th:unless="${user != null}">
+        <h4>Ketään ei löytynyt :/</h4>
+      </div>
+    </div>
   </body>
 </html>

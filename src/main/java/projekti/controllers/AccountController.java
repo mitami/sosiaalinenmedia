@@ -60,8 +60,8 @@ public class AccountController {
     return "registration";
   }
   
-  @GetMapping("/accounts/{username}")
-  public String getOne(@PathVariable String username, Model model) {
+  @GetMapping("/accounts/search")
+  public String getOne(@RequestParam String username, Model model) {
     model.addAttribute("foundUser", as.getUserByUsername(username));
     return "usersearch";
   }
