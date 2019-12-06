@@ -11,9 +11,10 @@ and open the template in the editor.
   </head>
   <body>
     <header th:replace="fragments/layout :: headerbar"></header>
-    <h2 th:text="${user.name}">Profile page</h2>
+    <h2 th:text="${user?.name}">Profile page</h2>
     <div>
       <h3>User profile page</h3>
+      <div th:replace="fragments/layout :: userinfo(${user})"></div>
     </div>
   </body>
 </html>

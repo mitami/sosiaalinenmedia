@@ -16,7 +16,9 @@ and open the template in the editor.
         <input type="text" name="username" />
         <input type="submit" value="Hae!" />
       </form>
-      <button>Logout</button>
+      <form th:action="@{/logout}" method="POST">
+        <input type="submit" value="Logout"/>
+      </form>
     </header>
     
     <div th:fragment="usersearchresult(user)">
@@ -25,6 +27,16 @@ and open the template in the editor.
       </div>
       <div th:unless="${user != null}">
         <h4>Ketään ei löytynyt :/</h4>
+      </div>
+    </div>
+    
+    <div th:fragment="userinfo(user)">
+      <div th:if="${user != null}">
+        <p th:text="${user.name}"></p>
+        <p th:text="${user.username}"></p>
+      </div>
+      <div th:unless="${user != null}">
+        No info available
       </div>
     </div>
   </body>
