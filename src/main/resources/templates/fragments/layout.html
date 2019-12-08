@@ -55,11 +55,22 @@ and open the template in the editor.
       </div>
     </div>
     
-    <div th:fragment="listusers(users)">
-      <div th:each="user : ${users}">
-        <div th:replace="fragments/layout :: userinfo(${user})"></div>
-      </div>
-    </div>
+    <table class="table" th:fragment="listusers(users)">
+      <thead>
+        <tr>
+          <th scope="col">Nimi</th>
+          <th scope="col">Kuva?</th>
+        </tr>
+      </thead>        
+      <tbody th:each="user : ${users}">
+        <tr>
+          <td>
+            <a th:href="@{/accounts/__${user.id}__/profile}" th:text="${user.name}"></a>
+          </td>
+          <td th:text="${user.username}"></td>
+        </tr>
+      </tbody>
+    </table>
     
     <div th:fragment="pendingfollows(follows)">
       <div th:each="follow : ${follows}">
