@@ -5,6 +5,7 @@
  */
 package projekti;
 
+import static org.fluentlenium.core.filter.FilterConstructor.withText;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,5 +31,27 @@ public class FluentLeniumPohjaTest extends org.fluentlenium.adapter.junit.Fluent
     goTo("http://localhost:" + port + "/");
     
     assertTrue(pageSource().contains("Tervetuloa"));
+  }
+  
+  @Test
+  public void canRegisterAndSignIn() {
+    goTo("http://localhost:" + port + "/");
+    
+    find("a", withText("Register")).click();
+    
+    find("#name").fill().with("testi");
+    find("#username").fill().with("testi");
+    find("#password").fill().with("testi");
+    
+    find("#register").click();
+    
+    assertTrue(pageSource().contains("Please sign in"));
+    
+    find("#username").fill().with("testi");
+    find("#password").fill().with("testi");
+    
+    find("button", withText("Sign in")).click();
+    
+    assertTrue(pageSource().contains("testi"));
   }
 }

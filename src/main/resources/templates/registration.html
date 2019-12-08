@@ -14,12 +14,12 @@ and open the template in the editor.
     <div>
       <form method="POST" th:action="@{/accounts}">
         <p>name</p>
-        <input type="text" name="name" />
+        <input type="text" name="name" id="name" />
         <p>Username</p>
-        <input type="text" name="username" />
+        <input type="text" name="username" id="username"/>
         <p>Password</p>
-        <input type="password" name="password" />
-        <input type="submit" value="Register" />
+        <input type="password" name="password" id="password"/>
+        <input type="submit" value="Register" id="register"/>
       </form>
     </div>
   </body>
