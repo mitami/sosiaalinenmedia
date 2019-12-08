@@ -28,7 +28,7 @@ and open the template in the editor.
         
         <div class="navbar-item">
           <form th:action="@{/logout}" method="POST">
-            <input type="submit" value="Logout"/>
+            <input class="btn btn-dark" type="submit" value="Logout"/>
           </form>
         </div>
       </nav>
@@ -48,8 +48,7 @@ and open the template in the editor.
     
     <div th:fragment="userinfo(user)">
       <div th:if="${user != null}">
-        <p th:text="${user.name}"></p>
-        <p th:text="${user.username}"></p>
+        <a th:href="@{/accounts/__${user.id}__/profile}" th:text="${user.name}"></a>
       </div>
       <div th:unless="${user != null}">
         No info available

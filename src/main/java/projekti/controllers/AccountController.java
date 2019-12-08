@@ -31,9 +31,10 @@ public class AccountController {
   @Autowired
   private FollowService fs;
   
-  @GetMapping("/accounts/{username}/profile")
-  public String getUserProfileByUsername(Model model, @PathVariable String username) {
-    Account a = as.getUserByUsername(username);
+  @GetMapping("/accounts/{id}/profile")
+  public String getUserProfileByUsername(Model model, @PathVariable Long id) {
+    //Account a = as.getUserByUsername(username);
+    Account a = as.getOne(id);
     
     model.addAttribute("user", a);
     
@@ -50,9 +51,6 @@ public class AccountController {
     }
     
     List<Follow> pendingFollowRequests = fs.findByTargetAndConfirmedFalse(a);
-    for(Follow f : pendingFollowRequests) {
-      System.out.println("Follow --> " + f.getId());
-    }
     
     model.addAttribute("user", a);
     model.addAttribute("pendingfollows", pendingFollowRequests);
