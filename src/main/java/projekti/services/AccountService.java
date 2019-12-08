@@ -38,4 +38,12 @@ public class AccountService {
     
     return ar.save(a);   
   }
+  
+  public Account getOne(Long id) {
+    return ar.getOne(id);
+  }
+  
+  public Account save(Account account) {
+    return ar.save(account);
+  }
 }

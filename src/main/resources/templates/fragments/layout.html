@@ -24,6 +24,9 @@ and open the template in the editor.
     <div th:fragment="usersearchresult(user)">
       <div th:if="${user != null}">
         <h4 th:text="${user.name}">Ketään ei löytynyt :/</h4>
+        <form th:action="@{/follow/__${user.id}__}" method="POST">
+          <input type="submit" value="Seuraa!"/>
+        </form>
       </div>
       <div th:unless="${user != null}">
         <h4>Ketään ei löytynyt :/</h4>
@@ -37,6 +40,24 @@ and open the template in the editor.
       </div>
       <div th:unless="${user != null}">
         No info available
+      </div>
+    </div>
+    
+    <div th:fragment="listusers(users)">
+      <div th:each="user : ${users}">
+        <div th:replace="fragments/layout :: userinfo(${user})"></div>
+      </div>
+    </div>
+    
+    <div th:fragment="pendingfollows(follows)">
+      <div th:each="follow : ${follows}">
+        <p th:text="${follow.follower.getName()}">Seuraajan nimi</p>
+        <form th:action="@{/follow/__${follow.id}__/confirm}" method="GET">
+          <input type="submit" value="Hyväksy!" />
+        </form>
+        <form th:action="@{/follow/__${follow.id}__/decline}" method="GET">
+          <input type="submit" value="Hylkää!" />
+        </form>
       </div>
     </div>
   </body>

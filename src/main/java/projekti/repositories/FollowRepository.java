@@ -5,9 +5,11 @@
  */
 package projekti.repositories;
 
+import java.util.List;
 import projekti.models.Follow;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import projekti.models.Account;
 
 /**
  *
@@ -16,4 +18,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FollowRepository extends JpaRepository<Follow, Long> {
   
+  public List<Follow> findByFollower(Account account);
+  
+  public List<Follow> findByTarget(Account account);
+  
+  public List<Follow> findByTargetAndConfirmedFalse(Account account);
 }

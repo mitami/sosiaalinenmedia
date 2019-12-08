@@ -15,6 +15,16 @@ and open the template in the editor.
     <div>
       <h3>User profile page</h3>
       <div th:replace="fragments/layout :: userinfo(${user})"></div>
+      <h4>Odottavat seurauspyynnöt:</h4>
+      <div th:replace="fragments/layout :: pendingfollows(${pendingfollows})"></div>
+      <div>
+        <h4>Seuraamasi ihmiset:</h4>
+        <div th:replace="fragments/layout :: listusers(${user.followed})"></div>
+      </div>
+      <div>
+        <h4>Seuraajasi:</h4>
+        <div th:replace="fragments/layout :: listusers(${user.followers})"></div>
+      </div>
     </div>
   </body>
 </html>

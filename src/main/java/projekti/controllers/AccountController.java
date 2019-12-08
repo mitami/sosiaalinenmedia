@@ -6,6 +6,7 @@
 package projekti.controllers;
 
 import java.security.Principal;
+import java.util.List;
 import projekti.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import projekti.models.Follow;
 import projekti.services.AccountService;
+import projekti.services.FollowService;
 
 /**
  *
@@ -25,6 +28,8 @@ public class AccountController {
   
   @Autowired
   private AccountService as;
+  @Autowired
+  private FollowService fs;
   
   @GetMapping("/accounts/{username}/profile")
   public String getUserProfileByUsername(Model model, @PathVariable String username) {
@@ -37,9 +42,20 @@ public class AccountController {
   
   @GetMapping("/accounts/myprofile")
   public String getLoggedInUsersProfile(Model model, Principal principal) {
-    Account a = as.getUserByUsername(principal.getName());
+    Account a;
+    try {
+      a = as.getUserByUsername(principal.getName());
+    } catch(Exception e) {
+      return "redirect:/";
+    }
+    
+    List<Follow> pendingFollowRequests = fs.findByTargetAndConfirmedFalse(a);
+    for(Follow f : pendingFollowRequests) {
+      System.out.println("Follow --> " + f.getId());
+    }
     
     model.addAttribute("user", a);
+    model.addAttribute("pendingfollows", pendingFollowRequests);
     
     return "profile";
   }
