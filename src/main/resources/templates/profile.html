@@ -18,7 +18,7 @@ and open the template in the editor.
         <div th:replace="fragments/layout :: userinfo(${user})"></div>
       </div>
       
-      <div class="col-sm-2">
+      <div th:unless="${#arrays.isEmpty(pendingfollows)}" class="col-sm-2">
         <h4>Odottavat seurauspyynnöt:</h4>
         <div th:replace="fragments/layout :: pendingfollows(${pendingfollows})"></div>
       </div>
