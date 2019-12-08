@@ -25,7 +25,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor
 public class Message extends AbstractPersistable<Long> {
   
-  private String test;
+  private String text;
   private LocalDate sent;
   
   @ManyToOne

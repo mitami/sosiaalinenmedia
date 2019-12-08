@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import projekti.models.Follow;
 import projekti.services.AccountService;
 import projekti.services.FollowService;
+import projekti.services.MessageService;
 
 /**
  *
@@ -30,6 +31,8 @@ public class AccountController {
   private AccountService as;
   @Autowired
   private FollowService fs;
+  @Autowired
+  private MessageService ms;
   
   @GetMapping("/accounts/{id}/profile")
   public String getUserProfileByUsername(Model model, @PathVariable Long id) {

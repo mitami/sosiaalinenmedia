@@ -11,5 +11,5 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
     public void configure(WebSecurity sec) throws Exception {
         // Pyyntöjä ei tarkasteta
         sec.ignoring().antMatchers("/**");
-    }
+    }zz
 }*/

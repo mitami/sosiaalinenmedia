@@ -83,5 +83,18 @@ and open the template in the editor.
         </form>
       </div>
     </div>
+    
+    <div th:fragment="listmessages(messages)">
+      <div th:each="message : ${messages}">
+        <div class="border p-1 pb-3">
+          <p th:text="${message.text}"></p>
+          <form>
+            <textarea class="form-control" rows="1"></textarea>
+            <input class="btn btn-success" type="submit" value="Kommentoi!" />
+          </form>
+          <a th:href="@{/messages/{id}/like}" class="btn btn-success">Tykkää!</a>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

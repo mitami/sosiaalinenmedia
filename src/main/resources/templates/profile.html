@@ -26,7 +26,17 @@ and open the template in the editor.
     
     <div class="row" th:if="${#strings.equals(#authentication.getPrincipal().getUsername(), user.username)}">
       <div class="col-md-8">
+        <form th:action="@{/messages}" method="POST" id="messageform">
+          <div class="border p-2 pb-5">
+            <div class="form-group">
+              <label for="messagefield">Mitä kuuluu?</label>
+              <textarea class="form-control" name="text" id="messagefield" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Julkaise</button>
+          </div>
+        </form>
         
+        <div th:replace="fragments/layout :: listmessages(${user.messages})"></div>
       </div>
 
       <div class="col-sm-2">
