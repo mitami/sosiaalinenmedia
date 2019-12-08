@@ -32,7 +32,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
       http.authorizeRequests()
-                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/accounts", "/accounts/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers(HttpMethod.GET, "/reservations").permitAll()
@@ -42,8 +41,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .defaultSuccessUrl("/accounts/myprofile", true);
         //Alla olevia ei tuotantoon, eikä h2-console...permitAll()
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+        //.antMatchers("/h2-console/**").permitAll()
+        //http.csrf().disable();
+        //http.headers().frameOptions().disable();
   }
   
   @Autowired
