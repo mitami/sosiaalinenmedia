@@ -5,20 +5,33 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>TODO supply a title</title>
+  <head th:fragment="head(title)">
+    <title th:text="${title}">Title here</title>
     <meta charset="UTF-8"></meta>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
   </head>
   <body>
     <header th:fragment="headerbar">
-      <a th:href="@{/accounts/myprofile}">Oma profiili</a>
-      <form th:action="@{/accounts/search}" method="GET">
-        <input type="text" name="username" />
-        <input type="submit" value="Hae!" />
-      </form>
-      <form th:action="@{/logout}" method="POST">
-        <input type="submit" value="Logout"/>
-      </form>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <ul class="navbar-nav mr-auto">
+          <li class="navbar-item">
+            <a class="nav-link" th:href="@{/accounts/myprofile}">Oma profiili</a>
+          </li>
+          <li class="navbar-item">
+            <form th:action="@{/accounts/search}" method="GET">
+              <input type="text" name="username" />
+              <input type="submit" value="Hae!" />
+            </form>
+          </li>
+        </ul>
+        
+        
+        <div class="navbar-item">
+          <form th:action="@{/logout}" method="POST">
+            <input type="submit" value="Logout"/>
+          </form>
+        </div>
+      </nav>
     </header>
     
     <div th:fragment="usersearchresult(user)">
