@@ -115,7 +115,7 @@ and open the template in the editor.
     
     <div th:fragment="listpictures(picturedata)">
       <div th:each="picture : ${picturedata}">
-        <div>
+        <div class="container-fluid">
           <a th:href="@{/pictures/__${picture.id}__/fullsize}">
             <img
               th:src="@{/pictures/__${picture.id}__}"
@@ -126,6 +126,12 @@ and open the template in the editor.
         </div>
         <div>
           <span th:text="${picture.description}"></span>
+          <form th:action="@{/pictures/__${picture.id}__}" method="DELETE">
+            <input type="submit" class="btn btn-danger" value="Poista!" />
+          </form>
+          <form th:action="@{/accounts/__${user.id}__/pictures/__${picture.id}__/setprofile}" method="POST">
+            <input type="submit" class="btn btn-primary" value="Aseta profiiilikuvaksi"/>
+          </form>
         </div>
       </div>
     </div>

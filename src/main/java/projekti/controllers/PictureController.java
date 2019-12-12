@@ -72,6 +72,13 @@ public class PictureController {
     return "redirect:/accounts/" + username + "/pictures";
   }
   
+  @PostMapping("/accounts/{userId}/pictures/{pictureId}/setprofile")
+  public String setPictureAsProfile(@PathVariable Long userId, @PathVariable Long pictureId, Principal principal) {
+    ps.setNewProfilePicture(pictureId, userId);
+    
+    return "redirect:/accounts/myprofile";
+  }
+  
   @DeleteMapping("/pictures/{id}")
   public String deleteOne(@PathVariable Long id, Principal principal) {
     String username = principal.getName();
@@ -89,7 +96,7 @@ public class PictureController {
     return picture.getContent();
   }
   
-  @GetMapping(path = "/accounts/{id}/pictures/profile")
+  @GetMapping(path = "/accounts/{id}/pictures/profile", produces="image/*")
   @ResponseBody
   public byte[] getUsersProfilePicture(@PathVariable Long id) {
     Picture picture = ps.findByOwnerAndIsprofileTrue(id);

@@ -6,6 +6,7 @@
 package projekti.services;
 
 import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projekti.models.Account;
@@ -34,6 +35,10 @@ public class PictureService {
     } catch(Exception e) {
       return false;
     }
+  }
+  
+  public Picture save(Picture picture) {
+    return pr.save(picture);
   }
   
   public Picture save(Picture picture, String username, String description) {
@@ -91,5 +96,26 @@ public class PictureService {
     Picture p = pr.findByOwnerAndIsprofileTrue(user);
     
     return p;
+  }
+  
+  public Picture setNewProfilePicture(Long newPictureId, Long userId) {
+    Account user = ar.getOne(userId);
+    Picture picture = pr.getOne(newPictureId);
+    
+    Account picOwner = ar.getOne(picture.getOwner().getId());
+    
+    if(Objects.equals(picOwner.getId(), user.getId())) {
+      Picture oldProfilePic = pr.findByOwnerAndIsprofileTrue(user);
+      if(oldProfilePic != null) {
+        oldProfilePic.setIsprofile(false);
+        pr.save(oldProfilePic);
+      }
+      
+      picture.setIsprofile(true);
+      
+      pr.save(picture);
+    }
+    
+    return picture;
   }
 }
