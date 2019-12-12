@@ -112,5 +112,30 @@ and open the template in the editor.
         </div>
       </div>
     </div>
+    
+    <div th:fragment="listpictures(picturedata)">
+      <div th:each="picture : ${picturedata}">
+        <div>
+          <a th:href="@{/pictures/__${picture.id}__/fullsize}">
+            <img
+              th:src="@{/pictures/__${picture.id}__}"
+              class="img-thumbnail"
+              width="10%" height="10%"
+            />
+          </a>
+        </div>
+        <div>
+          <span th:text="${picture.description}"></span>
+        </div>
+      </div>
+    </div>
+    
+    <div th:fragment="profilepic(user)">
+      <img
+        th:src="@{/accounts/__${user.id}__/pictures/profile}"
+        width="10%" height="10%"
+        class="img-thumbnail float-right"
+      />
+    </div>
   </body>
 </html>

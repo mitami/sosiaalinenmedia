@@ -5,9 +5,11 @@
  */
 package projekti.repositories;
 
+import java.util.List;
 import projekti.models.Picture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import projekti.models.Account;
 
 /**
  *
@@ -15,5 +17,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PictureRepository extends JpaRepository<Picture, Long> {
+ 
+  public Picture deleteByIdAndOwner(Long id, Account owner);
   
+  public List<Picture> findByOwner(Account owner);
+  
+  public Picture findByOwnerAndIsprofileTrue(Account owner);
 }

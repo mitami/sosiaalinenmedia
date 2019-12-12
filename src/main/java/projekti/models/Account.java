@@ -32,7 +32,7 @@ public class Account extends AbstractPersistable<Long> {
   private List<Comment> comments;
   @OneToMany(mappedBy="target")
   private List<Message> messages;
-  @OneToMany
+  @OneToMany(mappedBy="owner")
   private List<Picture> pictures;
   @ManyToMany
   private List<Account> followed;
