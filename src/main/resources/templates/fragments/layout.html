@@ -126,7 +126,7 @@ and open the template in the editor.
         </div>
         <div>
           <span th:text="${picture.description}"></span>
-          <form th:action="@{/pictures/__${picture.id}__}" method="DELETE">
+          <form th:action="@{/pictures/__${picture.id}__}" th:method="DELETE">
             <input type="submit" class="btn btn-danger" value="Poista!" />
           </form>
           <form th:action="@{/accounts/__${user.id}__/pictures/__${picture.id}__/setprofile}" method="POST">

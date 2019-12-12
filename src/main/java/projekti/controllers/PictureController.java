@@ -43,7 +43,6 @@ public class PictureController {
     
     for(Picture p : pictures) {
       p.setContent(new byte[0]);
-      System.out.println("PICTURE ID -----" + p.getId());
     } 
     
     model.addAttribute("picturedata", pictures);
@@ -84,13 +83,12 @@ public class PictureController {
     String username = principal.getName();
     ps.deleteByIdAndUsername(id, username);
     
-    return "redirect:/pictures/" + username;
+    return "redirect:/accounts/" + username +"/pictures";
   }
   
   @GetMapping(path = "/pictures/{id}", produces="image/*")
   @ResponseBody
   public byte[] getPictureById(@PathVariable Long id) {
-    System.out.println("Called getPictureById!! ------------->>>");
     Picture picture = ps.getOne(id);
     
     return picture.getContent();

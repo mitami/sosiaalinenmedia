@@ -29,7 +29,8 @@ public class PictureService {
   public boolean deleteByIdAndUsername(Long id, String username) {
     try{
       Account user = ar.findByUsername(username);
-      pr.deleteByIdAndOwner(id, user);
+      Picture toDelete = pr.findByIdAndOwner(id, user);
+      pr.delete(toDelete);
       
       return true;
     } catch(Exception e) {
@@ -42,7 +43,6 @@ public class PictureService {
   }
   
   public Picture save(Picture picture, String username, String description) {
-    System.out.println("PICTURE_SERVICE --- SAVE called");
     Account user = ar.findByUsername(username);
     //Change to just retrieve amount of pictures
     List<Picture> usersPictures = pr.findByOwner(user);
@@ -74,10 +74,6 @@ public class PictureService {
   public List<Picture> findByUsername(String username) {
     Account user = ar.findByUsername(username);
     List<Picture> usersPictures = pr.findByOwner(user);
-    
-    for(Picture p : usersPictures) {
-      System.out.println("FIND_BY_USERNAME_PICTURES ---" + p.getId());
-    }
     
     return usersPictures;
   }

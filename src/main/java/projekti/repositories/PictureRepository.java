@@ -22,5 +22,7 @@ public interface PictureRepository extends JpaRepository<Picture, Long> {
   
   public List<Picture> findByOwner(Account owner);
   
+  public Picture findByIdAndOwner(Long id, Account owner);
+  
   public Picture findByOwnerAndIsprofileTrue(Account owner);
 }
